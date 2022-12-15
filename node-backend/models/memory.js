@@ -19,7 +19,6 @@ const memorySchema = mongoose.Schema({
     },
     year:{
         type: String,
-        required:true
     }
 })
 
