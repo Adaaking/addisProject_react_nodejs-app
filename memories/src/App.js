@@ -1,10 +1,19 @@
+import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Navbar/>
-    </div>
+      <Routes>
+        <Route path='/' exact element={<Home/>}/>
+        <Route path='/login' exact element={<Login/>}/>
+        <Route path='/signup' exact element={<SignUp/>}/>
+      </Routes>
+    </Router>
   );
 }
 

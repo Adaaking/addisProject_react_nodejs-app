@@ -1,49 +1,66 @@
-import React from 'react'
-import image from '../images/addis Sofware.png'
-import { ThemeProvider } from '@emotion/react'
-import preset from '@rebass/preset'
-import {
-    Box,
-    Card,
-    Image,
-    Heading,
-    Text,
-    Button,
-    Flex,
-    Link
-  } from 'rebass'
-
+import React from "react";
+import image from "../images/addis Sofware.png";
+import { Box, Image, Button, Flex} from "rebass";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-<ThemeProvider theme={preset}>
+    <div>
       <Flex
         p={3}
-        width = {1200}
-        color='green'
+        maxWidth={1200}
+        color="green"
         mx="auto"
         my="2"
         borderRadius="10"
-        bg='#C0C2C9'
-        alignItems='center'
-        justifyItems="space-between"
+        bg="#C0C2C9"
+        alignItems="center"
+      >
+        <Link to='/'>
+        <Image src={image} width={200} borderRadius="10" />
+        </Link>
+        <Box mx="auto" />
+        <Button
+          sx={{
+            bg: "#0000FF",
+            cursor:"pointer",
+            py:'12px'
+          }}
+          variant="primary"
+          mr={4}
         >
-        
-        <Image src = {image} width={200} borderRadius="10"/>
-        <Box mx='auto' />
-        <Button variant='primary' mr={4}>
-        <Link style={{textDeconration:"none"}} variant='nav'  href='https://www.geeksforgeeks.org/'>
-          signin
-        </Link> 
+          <Link
+          style={{
+            textDecoration: "none",
+              color:"white"
+          }}
+            to="/login"
+          >
+            signin
+          </Link>
         </Button>
-        <Button variant='primary' mr={2}>
-            <Link variant='nav'  href='https://www.geeksforgeeks.org/'>
+        <Button
+          sx={{
+            bg: "#0000FF",
+            cursor:"pointer",
+            py:'12px'
+          }}
+          variant="primary"
+          mr={2}
+        >
+          <Link
+            style={{
+              textDecoration: "none",
+                color:"white"
+            }}
+            to="/signup"
+          >
             signup
-            </Link> 
+          </Link>
         </Button>
       </Flex>
-    </ThemeProvider>
-  )
-}
+    </div>
+  );
+};
 
-export default Navbar
+export default Navbar;

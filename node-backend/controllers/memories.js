@@ -9,7 +9,7 @@ export const createMemories = async (req,res) => {
     }
 }
 
-export const findAllMemories = async (req,res) => {
+export const getAllMemories = async (req,res) => {
     try {
         const allMemories = await memory.find()
         res.status(200).json(allMemories)
