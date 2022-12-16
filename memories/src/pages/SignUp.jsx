@@ -60,7 +60,9 @@ const SignUp = () => {
           }}
           id="email"
           placeholder="email"
+          type="email"
           onChange={handleChange}
+          required
         />
         <Input
           sx={{
@@ -70,7 +72,9 @@ const SignUp = () => {
           }}
           id="password"
           placeholder="password"
+          type="password"
           onChange={handleChange}
+          required
         />
         <Input
           sx={{
@@ -80,7 +84,9 @@ const SignUp = () => {
           }}
           id="age"
           placeholder="age"
+          type="number"
           onChange={handleChange}
+          required
         />
          <Input
           sx={{
@@ -90,7 +96,9 @@ const SignUp = () => {
           }}
           id="height"
           placeholder="height"
+          type="number"
           onChange={handleChange}
+          required
         />
           <Select
             id='gender'
@@ -100,7 +108,9 @@ const SignUp = () => {
                 alignItems:'center',
                 borderRadius: 5,
             }}
+            type="text"
             onChange={handleChange}
+            required
             >
             <option>select gender</option>
             <option>

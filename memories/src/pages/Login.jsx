@@ -59,9 +59,11 @@ const Login = () => {
             py: "12px",
             borderRadius: 5,
           }}
+          type = 'email'
           id="email"
           placeholder="email"
           onChange={handleChange}
+          required
         />
         <Input
           sx={{
@@ -69,9 +71,11 @@ const Login = () => {
             py: "12px",
             borderRadius: 5,
           }}
+          type ="password"
           id="password"
           placeholder="password"
           onChange={handleChange}
+          required
         />
 
       </Card>

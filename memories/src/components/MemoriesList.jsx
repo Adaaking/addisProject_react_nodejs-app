@@ -7,7 +7,6 @@ import { deleteMemory, getMemories, updateId } from "../features/actions/memorie
 
 const MemoriesList = () => {
   const memories = useSelector((state) => state.memoriesReducer.memories);
-  console.log(memories);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMemories());
@@ -20,8 +19,9 @@ const MemoriesList = () => {
       }}
     >
       {memories &&
-        memories.map((memory) => (
+        memories.map((memory,indx) => (
           <Card
+          key={indx}
             sx={{
               width: 255,
               bg: "whitesmoke",
