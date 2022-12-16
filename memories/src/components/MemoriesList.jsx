@@ -1,8 +1,17 @@
 import React from 'react'
 import { Box, Button, Card, Flex, Image, Text } from 'rebass'
 import bgimage from '../images/bg12.jpg'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { getMemories } from '../features/actions/memories'
 
 const MemoriesList = () => {
+    const memories = useSelector(state => state.memoriesReducer.memories)
+    console.log(memories)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getMemories())
+    },[])
   return (
     <Flex 
     sx={{

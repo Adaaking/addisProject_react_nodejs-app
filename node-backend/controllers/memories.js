@@ -1,4 +1,4 @@
-import memory from "../models/memory"
+import memory from "../models/memory.js"
 
 export const createMemories = async (req,res) => {
     try {
@@ -12,6 +12,7 @@ export const createMemories = async (req,res) => {
 export const getAllMemories = async (req,res) => {
     try {
         const allMemories = await memory.find()
+        console.log(allMemories)
         res.status(200).json(allMemories)
     } catch (error) {
         res.status(400).json({message:error.message})

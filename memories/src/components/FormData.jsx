@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { Box, Text, Card, Button } from "rebass";
 import { Input } from "@rebass/forms";
+import { useDispatch } from "react-redux";
+import { createMemories } from "../features/actions/memories";
 const FormData = () => {
   const [memory,setMemory] = useState({
     title:'',
@@ -10,10 +12,11 @@ const FormData = () => {
     desc:'',
     year:''
   })
+  const dispatch = useDispatch()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(memory)
+    dispatch(createMemories(memory))
   }
 
   const handleChange = (e) => {
