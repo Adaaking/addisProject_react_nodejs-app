@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
 import { Box, Text, Card, Button } from "rebass";
 import { Input,Select } from "@rebass/forms";
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../features/actions/user';
+import { useNavigate } from 'react-router-dom';
 const SignUp = () => {
+    const [user,setUser] = useState({ email:'',password:'', age:'', height:'', gender:''})
+    const success = useSelector(state => state.userReducer.user)
 
-    const [user,setUser] = useState({
-        email:'',
-        password:'',
-        age:'',
-        height:'',
-        gender:''
-      })
-    
-      const handleSubmit = (e) => {
+     const dispatch = useDispatch()
+     const navigate = useNavigate() 
+
+     const handleSubmit = async(e) => {
         e.preventDefault()
-        console.log(user)
+         await dispatch(registerUser(user))
+        { success && navigate('/')}
       }
     
       const handleChange = (e) => {

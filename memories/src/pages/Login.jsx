@@ -1,9 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Text, Card, Button } from "rebass";
 import { Input } from "@rebass/forms";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { userLogin } from '../features/actions/user';
 const Login = () => {
+  const [user,setUser] = useState({ email:'',password:''})
+  const success = useSelector(state => state.userReducer.user)
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate() 
+
+  const handleSubmit = async (e) => {
+     e.preventDefault()
+     await dispatch(userLogin(user))
+     { success && navigate('/')}
+   }
+
+   const handleChange = (e) => {
+    e.preventDefault()
+    setUser({[e.target.id]:e.target.value})
+   }
   return (
     <Box
+    as='form'
+    onSubmit={handleSubmit}
       sx={{
         mt:"3",
         py:"5",
@@ -38,8 +59,9 @@ const Login = () => {
             py: "12px",
             borderRadius: 5,
           }}
-          id="title"
+          id="email"
           placeholder="email"
+          onChange={handleChange}
         />
         <Input
           sx={{
@@ -47,8 +69,9 @@ const Login = () => {
             py: "12px",
             borderRadius: 5,
           }}
-          id="title"
+          id="password"
           placeholder="password"
+          onChange={handleChange}
         />
 
       </Card>

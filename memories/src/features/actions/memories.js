@@ -11,3 +11,22 @@ export const createMemories = (memory) => {
         payload:memory
     }
 }
+export const updateId = (id) => {
+    return {
+        type: type.UPDATE_ID,
+        payload:id
+    }
+}
+
+export const updateMemory = (memory) => {
+    return {
+        type: type.UPDATE_MEMORY,
+        payload:memory
+    }
+}
+export const deleteMemory = (id) => {
+    return {
+        type: type.DELETE_MEMORY,
+        payload:id
+    }
+}

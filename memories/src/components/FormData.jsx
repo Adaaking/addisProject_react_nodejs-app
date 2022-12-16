@@ -2,21 +2,38 @@
 import React, { useState } from "react";
 import { Box, Text, Card, Button } from "rebass";
 import { Input } from "@rebass/forms";
-import { useDispatch } from "react-redux";
-import { createMemories } from "../features/actions/memories";
+import { useDispatch, useSelector } from "react-redux";
+import { createMemories, getMemories, updateMemory } from "../features/actions/memories";
+import { useEffect } from "react";
 const FormData = () => {
-  const [memory,setMemory] = useState({
-    title:'',
-    tag:'',
-    imageUrl:'',
-    desc:'',
-    year:''
-  })
+  const [memory,setMemory] = useState({title:'',tag:'',imageUrl:'',desc:'', year:''})
+  const updateid = useSelector(state => state.memoriesReducer.updateId)
+  const memoryobj = useSelector(state => state.memoriesReducer.memories.find(memory=> memory._id === updateid))
   const dispatch = useDispatch()
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if(memoryobj){
+      setMemory(memoryobj)
+    }
+  },[updateid])
+
+  const clearForm = () => {
+    setMemory({title:'',tag:'',imageUrl:'',desc:'',year:''})
+    dispatch(getMemories())
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    dispatch(createMemories(memory))
+    try {
+      if(updateid){
+        dispatch(updateMemory(memory))
+      }else{
+        dispatch(createMemories(memory))
+      }
+      clearForm()
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   const handleChange = (e) => {
@@ -55,6 +72,7 @@ const FormData = () => {
           }}
           id="title"
           placeholder="title"
+          value = {memory.title}
           onChange={handleChange}
         />
         <Input
@@ -65,6 +83,7 @@ const FormData = () => {
           }}
           id="tag"
           placeholder="memory #tag"
+          value={memory.tag}
           onChange={handleChange}
         />
         <Input
@@ -75,6 +94,7 @@ const FormData = () => {
           }}
           id="imageUrl"
           placeholder="image url"
+          value={memory.imageUrl}
           onChange={handleChange}
         />
         <Input
@@ -85,6 +105,7 @@ const FormData = () => {
           }}
           id="year"
           placeholder="year"
+          value={memory.year}
           onChange={handleChange}
         />
         <Input
@@ -95,6 +116,7 @@ const FormData = () => {
           }}
           id="desc"
           placeholder="description"
+          value={memory.desc}
           onChange={handleChange}
         />
       </Card>

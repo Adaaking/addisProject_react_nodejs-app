@@ -3,10 +3,11 @@ import bcrypt from 'bcrypt'
 
 export const login = async (req,res) => {
     const {email,password} =req.body
+
   try {
-    const existingUser = await user.find({email})
+    const existingUser = await user.findOne({email})
     if(!existingUser) return res.status(404).json({message:"user not found with given email"})
-    const ispasswordCorrect = await bcrypt.compare(password,existingUser.password)
+    const ispasswordCorrect = await bcrypt.compare(password,existingUser.password,)
     if(!ispasswordCorrect) return res.status(400).json({message:"invalid password"})
 
     res.status(200).json(existingUser)
@@ -19,7 +20,7 @@ export const login = async (req,res) => {
 export const register = async (req,res) => {
     const {firstname,lastname,email,password,gender,height} =req.body
   try {
-    const existingUser = await user.find({email})
+    const existingUser = await user.findOne({email})
     if(existingUser) return res.status(404).json({message:"user already exists with this email"})
     const salt = bcrypt.genSaltSync(12);
     const hashedPassword = bcrypt.hashSync(password, salt);

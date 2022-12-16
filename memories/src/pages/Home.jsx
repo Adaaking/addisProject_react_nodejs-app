@@ -4,13 +4,18 @@ import FormData from '../components/FormData'
 import MemoriesList from '../components/MemoriesList'
 
 const Home = () => {
+  
   return (
     <Flex sx={{
        mt:"5",
        maxWidth:1200,
        mx:'auto'
     }}>
-       <MemoriesList/>
+       <Box sx={{
+        flex:3
+       }}>
+        <MemoriesList/>
+       </Box>
        <Box m="auto"/>
         <FormData/>
     </Flex>

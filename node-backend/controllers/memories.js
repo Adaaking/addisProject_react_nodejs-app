@@ -12,7 +12,6 @@ export const createMemories = async (req,res) => {
 export const getAllMemories = async (req,res) => {
     try {
         const allMemories = await memory.find()
-        console.log(allMemories)
         res.status(200).json(allMemories)
     } catch (error) {
         res.status(400).json({message:error.message})
@@ -21,9 +20,11 @@ export const getAllMemories = async (req,res) => {
 
 export const updateMemory = async (req,res) => {
     const {id} = req.params
+    console.log(id)
+    console.log(req.body)
     try {
         if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({message:`no memory with id:${id}`})
-        const newMemory = await  memory.findByIdAndUpdate(id,req.body,{new:true})
+        const newMemory = await memory.findByIdAndUpdate(id,req.body,{new:true})
         res.status(200).json(newMemory)
     } catch (error) {
         res.status(500).json({message:"something went wrong"})
