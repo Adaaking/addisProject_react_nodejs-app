@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { Box, Text, Card, Button } from "rebass";
 import { Input } from "@rebass/forms";
 import { useDispatch, useSelector } from "react-redux";
-import { createMemories, getMemories, updateMemory } from "../features/actions/memories";
+import { createMemories, getMemories, makenullid, updateMemory } from "../features/actions/memories";
 import { useEffect } from "react";
 const FormData = () => {
   const [memory,setMemory] = useState({title:'',tag:'',imageUrl:'',desc:'', year:''})
   const updateid = useSelector(state => state.memoriesReducer.updateId)
-  const memoryobj = useSelector(state => state.memoriesReducer.memories.find(memory=> memory._id === updateid))
+  const memoryobj = useSelector(state => state.memoriesReducer.memories?.find(memory=> memory._id === updateid))
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -30,6 +30,8 @@ const FormData = () => {
       }else{
         dispatch(createMemories(memory))
       }
+      dispatch(makenullid())
+      dispatch(getMemories())
       clearForm()
     } catch (error) {
       console.log(error.message)

@@ -20,7 +20,7 @@ const updateMemo = async (memory) => {
 
 const deleteMemo = async (id) => {
     const response = await axios.delete(apiUrl+ `delete/${id}`)
-    return response.data
+    return id
 }
 
 
@@ -53,7 +53,9 @@ function* updateMemory({payload}) {
 
 function* deleteMemory({payload}) {
     try {
+        console.log('payload', payload)
         const memoryId = yield(call(deleteMemo,payload))
+        console.log(memoryId)
         yield put({type:"DELETE_MEMORY_SUCCESS",id:memoryId})
     } catch (error) {
         yield put({ type:"DELETE_MEMORY_FAILED"})

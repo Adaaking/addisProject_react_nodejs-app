@@ -14,7 +14,7 @@ const SignUp = () => {
      const handleSubmit = async(e) => {
         e.preventDefault()
          await dispatch(registerUser(user))
-        { success && navigate('/')}
+         navigate('/')
       }
     
       const handleChange = (e) => {

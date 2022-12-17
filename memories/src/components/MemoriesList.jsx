@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Button, Card, Flex, Image, Text } from "rebass";
-import bgimage from "../images/bg12.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { deleteMemory, getMemories, updateId } from "../features/actions/memories";
@@ -10,7 +9,7 @@ const MemoriesList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMemories());
-  }, []);
+  }, [dispatch]);
   return (
     <Flex
       sx={{

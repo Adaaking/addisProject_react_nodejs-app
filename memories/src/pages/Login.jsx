@@ -13,13 +13,13 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
      e.preventDefault()
-     await dispatch(userLogin(user))
+     dispatch(userLogin(user))
      { success && navigate('/')}
    }
 
    const handleChange = (e) => {
     e.preventDefault()
-    setUser({[e.target.id]:e.target.value})
+    setUser({...user,[e.target.id]:e.target.value})
    }
   return (
     <Box

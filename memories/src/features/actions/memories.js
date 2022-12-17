@@ -30,3 +30,9 @@ export const deleteMemory = (id) => {
         payload:id
     }
 }
+
+export const makenullid = () => {
+    return{
+        type: type.MAKENULLID
+    }
+}

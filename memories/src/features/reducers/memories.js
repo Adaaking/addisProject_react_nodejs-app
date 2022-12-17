@@ -35,15 +35,21 @@ export default function memoriesReducer(state = initialState, action){
                 ...state,
                 updateId:action.payload
             }
+        case type.MAKENULLID:
+            return{
+                ...state,
+                updateId:null
+            }  
         case type.UPDATE_MEMORIES_SUCCESS:
             return {
                 ...state,
                 success:true
             }
         case type.DELETE_MEMORY_SUCCESS:
+            console.log(action.id)
             return {
                 ...state,
-                memories: state.memories.filter(memory => memory._id !== action.payload)
+                memories: state.memories.filter(memory => memory._id!==action.id)
             }
         default:
             return state

@@ -1,4 +1,5 @@
 import memory from "../models/memory.js"
+import mongoose from "mongoose"
 
 export const createMemories = async (req,res) => {
     try {
@@ -20,23 +21,21 @@ export const getAllMemories = async (req,res) => {
 
 export const updateMemory = async (req,res) => {
     const {id} = req.params
-    console.log(id)
-    console.log(req.body)
     try {
         if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({message:`no memory with id:${id}`})
         const newMemory = await memory.findByIdAndUpdate(id,req.body,{new:true})
         res.status(200).json(newMemory)
     } catch (error) {
-        res.status(500).json({message:"something went wrong"})
+        res.status(500).json(error.message)
     }
 }
  export const deleteMemory = async (req,res) => {
     const {id} = req.params
     try {
         if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({message:`no memory with id:${id}`})
-        await memory.deleteOne(id)
-        res.status(204).json({message:'deleted successfully'})
+        await memory.findByIdAndDelete(id)
+        res.status(204).json({message:'successfully deleted'})
     } catch (error) {
-        res.status(500).json({message:'something went wrong'})
+        res.status(500).json(error.message)
     }
  }
